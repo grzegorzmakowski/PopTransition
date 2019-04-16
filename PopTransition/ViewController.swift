@@ -63,9 +63,12 @@ class SecondViewController: UIViewController {
         button.setTitleColor(.red, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("dissmiss", for: .normal)
-        button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        button.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         button.addTarget(self, action: .dismissTapped, for: .touchUpInside)
     }

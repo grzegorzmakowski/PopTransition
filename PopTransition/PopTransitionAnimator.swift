@@ -48,10 +48,21 @@ internal class PopTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
             container.addSubview(contener.view)
             
             to.view.translatesAutoresizingMaskIntoConstraints = false
-            to.view.heightAnchor.constraint(equalToConstant: 200).isActive = true
-            to.view.centerYAnchor.constraint(equalTo: contener.view.centerYAnchor).isActive = true
-            to.view.leadingAnchor.constraint(equalTo: contener.view.leadingAnchor).isActive = true
-            to.view.trailingAnchor.constraint(equalTo: contener.view.trailingAnchor).isActive = true
+//            to.view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            let topPriority = to.view.topAnchor.constraint(greaterThanOrEqualTo: contener.view.topAnchor, constant: 44)
+            topPriority.priority = UILayoutPriority.defaultHigh
+            topPriority.isActive = true
+            
+            
+            let centerPriority = to.view.centerYAnchor.constraint(equalTo: contener.view.centerYAnchor)
+            centerPriority.priority = UILayoutPriority.required
+            centerPriority.isActive = true
+            
+            let bottomPriority = to.view.bottomAnchor.constraint(greaterThanOrEqualTo: contener.view.bottomAnchor, constant: -44)
+            bottomPriority.priority = .defaultHigh
+            bottomPriority.isActive = true
+            to.view.leadingAnchor.constraint(equalTo: contener.view.leadingAnchor, constant: 40).isActive = true
+            to.view.trailingAnchor.constraint(equalTo: contener.view.trailingAnchor, constant: -40).isActive = true
             
             contener.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
