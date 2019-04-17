@@ -50,20 +50,47 @@ extension PopTransitionAnimatorProtocol {
         popContainer.view.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
 
         popContainer.view.addSubview(to.view)
-        let center = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
-        center.priority = .required
-        center.isActive = true
-        let top = to.view.topAnchor.constraint(equalTo: popContainer.view.topAnchor, constant: 50)
-        top.priority = .defaultLow
-        top.isActive = true
-        let bottom = to.view.bottomAnchor.constraint(equalTo: popContainer.view.bottomAnchor, constant: -50)
-        bottom.priority = .defaultLow
-        bottom.isActive = true
-        let heigh = to.view.heightAnchor.constraint(greaterThanOrEqualToConstant: 150)
-        heigh.priority = .required
-        heigh.isActive = true
-        to.view.leftAnchor.constraint(equalTo: popContainer.view.leftAnchor, constant: 20).isActive = true
-        to.view.rightAnchor.constraint(equalTo: popContainer.view.rightAnchor, constant: -20).isActive = true
+        
+        let minimumContentHeight = to.preferredContentSize.height == 0 ? 150 : to.preferredContentSize.height
+    
+        // MARK: - PresentedController constraints
+        
+        let presentedCenterYConstraint = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
+        presentedCenterYConstraint.priority = .required
+        presentedCenterYConstraint.isActive = true
+        
+        let presentedTopConstraint = to.view.topAnchor.constraint(equalTo: popContainer.view.topAnchor, constant: 50)
+        presentedTopConstraint.priority = .defaultHigh
+        presentedTopConstraint.isActive = true
+        
+        let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.view.bottomAnchor, constant: -50)
+        presentedBottomConstraint.priority = .defaultHigh
+        presentedBottomConstraint.isActive = true
+        
+        let presentedHeightConstraint: NSLayoutConstraint
+        if to.preferredContentSize.height > 0 {
+            presentedHeightConstraint = to.view.heightAnchor.constraint(equalToConstant: minimumContentHeight)
+        } else {
+            presentedHeightConstraint = to.view.heightAnchor.constraint(greaterThanOrEqualToConstant: minimumContentHeight)
+        }
+        presentedHeightConstraint.priority = .required
+        presentedHeightConstraint.isActive = true
+        
+        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 20)
+        presentedLeftConstraint.priority = .defaultHigh
+        presentedLeftConstraint.isActive = true
+        
+        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -20)
+        presentedRightConstraint.priority = .defaultHigh
+        presentedRightConstraint.isActive = true
+        
+        let presentedCenterXConstraint = to.view.centerXAnchor.constraint(equalTo: popContainer.view.centerXAnchor)
+        presentedCenterXConstraint.priority = .required
+        presentedCenterXConstraint.isActive = to.preferredContentSize.width > 0
+        
+        let presentedWidthConstraint = to.view.widthAnchor.constraint(equalToConstant: to.preferredContentSize.width)
+        presentedWidthConstraint.priority = .required
+        presentedWidthConstraint.isActive = to.preferredContentSize.width > 0
 
         self.popContainer = popContainer
     }

@@ -56,6 +56,15 @@ class SecondViewController: UIViewController {
     
     let secondButton: UIButton = UIButton()
     
+//    override var preferredContentSize: CGSize {
+//        get {
+//            return CGSize(width: 100, height: 100)
+//        }
+//        set {
+//            super.preferredContentSize = newValue
+//        }
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
