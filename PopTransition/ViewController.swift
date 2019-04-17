@@ -14,8 +14,10 @@ fileprivate extension Selector {
 
 class ViewController: UIViewController {
     
-    let popTransition: PopTransitionAnimator = PopTransitionAnimator(direction: .show)
-    let hideTransition: PopTransitionAnimator = PopTransitionAnimator(direction: .hide)
+    let popTransition: BasePopTransitionAnimator = ZoomPopTransitionAnimator(direction: .show)
+    let hideTransition: BasePopTransitionAnimator = ZoomPopTransitionAnimator(direction: .hide)
+    
+    let popManager: PopTransitionManager = PopTransitionManager(transitionType: .zoom)
     
 
     override func viewDidLoad() {
@@ -25,7 +27,7 @@ class ViewController: UIViewController {
 
     @IBAction func showCustom(_ sender: Any) {
         let second = SecondViewController()
-        second.transitioningDelegate = self
+        second.transitioningDelegate = popManager
         second.modalPresentationStyle = .custom
         
         present(second, animated: true, completion: nil)
@@ -44,7 +46,7 @@ extension ViewController: UIViewControllerTransitioningDelegate {
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let presentationController = PopPresentationController(presentedViewController: presented, presenting: source)
+        let presentationController = PopTransitionPresentationController(presentedViewController: presented, presenting: source)
         return presentationController
     }
 }

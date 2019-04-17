@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC6DF52C2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */; };
+		DC6DF52E2266FA8A00CEB6D1 /* PopTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */; };
 		DCE2D23A2265F390009C6A7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D2392265F390009C6A7E /* AppDelegate.swift */; };
 		DCE2D23C2265F390009C6A7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D23B2265F390009C6A7E /* ViewController.swift */; };
 		DCE2D23F2265F390009C6A7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE2D23D2265F390009C6A7E /* Main.storyboard */; };
 		DCE2D2412265F392009C6A7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE2D2402265F392009C6A7E /* Assets.xcassets */; };
 		DCE2D2442265F392009C6A7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE2D2422265F392009C6A7E /* LaunchScreen.storyboard */; };
-		DCE2D24C2265F5EB009C6A7E /* PopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D24B2265F5EB009C6A7E /* PopTransitionAnimator.swift */; };
-		DCE2D24E2265FD52009C6A7E /* PopPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D24D2265FD52009C6A7E /* PopPresentationController.swift */; };
+		DCE2D24C2265F5EB009C6A7E /* BasePopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D24B2265F5EB009C6A7E /* BasePopTransitionAnimator.swift */; };
+		DCE2D24E2265FD52009C6A7E /* PopTransitionPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D24D2265FD52009C6A7E /* PopTransitionPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPopTransitionAnimator.swift; sourceTree = "<group>"; };
+		DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTransitionManager.swift; sourceTree = "<group>"; };
 		DCE2D2362265F390009C6A7E /* PopTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE2D2392265F390009C6A7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCE2D23B2265F390009C6A7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,8 +28,8 @@
 		DCE2D2402265F392009C6A7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCE2D2432265F392009C6A7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCE2D2452265F392009C6A7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCE2D24B2265F5EB009C6A7E /* PopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTransitionAnimator.swift; sourceTree = "<group>"; };
-		DCE2D24D2265FD52009C6A7E /* PopPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPresentationController.swift; sourceTree = "<group>"; };
+		DCE2D24B2265F5EB009C6A7E /* BasePopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopTransitionAnimator.swift; sourceTree = "<group>"; };
+		DCE2D24D2265FD52009C6A7E /* PopTransitionPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTransitionPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC6DF52A2266F8E200CEB6D1 /* PopTransitionAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				DCE2D24D2265FD52009C6A7E /* PopTransitionPresentationController.swift */,
+				DCE2D24B2265F5EB009C6A7E /* BasePopTransitionAnimator.swift */,
+				DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */,
+				DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */,
+			);
+			path = PopTransitionAnimator;
+			sourceTree = "<group>";
+		};
 		DCE2D22D2265F390009C6A7E = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +73,13 @@
 		DCE2D2382265F390009C6A7E /* PopTransition */ = {
 			isa = PBXGroup;
 			children = (
+				DC6DF52A2266F8E200CEB6D1 /* PopTransitionAnimator */,
 				DCE2D2392265F390009C6A7E /* AppDelegate.swift */,
 				DCE2D23B2265F390009C6A7E /* ViewController.swift */,
-				DCE2D24B2265F5EB009C6A7E /* PopTransitionAnimator.swift */,
 				DCE2D23D2265F390009C6A7E /* Main.storyboard */,
 				DCE2D2402265F392009C6A7E /* Assets.xcassets */,
 				DCE2D2422265F392009C6A7E /* LaunchScreen.storyboard */,
 				DCE2D2452265F392009C6A7E /* Info.plist */,
-				DCE2D24D2265FD52009C6A7E /* PopPresentationController.swift */,
 			);
 			path = PopTransition;
 			sourceTree = "<group>";
@@ -141,10 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC6DF52E2266FA8A00CEB6D1 /* PopTransitionManager.swift in Sources */,
 				DCE2D23C2265F390009C6A7E /* ViewController.swift in Sources */,
-				DCE2D24E2265FD52009C6A7E /* PopPresentationController.swift in Sources */,
+				DCE2D24E2265FD52009C6A7E /* PopTransitionPresentationController.swift in Sources */,
+				DC6DF52C2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift in Sources */,
 				DCE2D23A2265F390009C6A7E /* AppDelegate.swift in Sources */,
-				DCE2D24C2265F5EB009C6A7E /* PopTransitionAnimator.swift in Sources */,
+				DCE2D24C2265F5EB009C6A7E /* BasePopTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

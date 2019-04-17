@@ -9,39 +9,26 @@
 import Foundation
 import UIKit
 
-final internal class PopPresentationController: UIPresentationController {
+final class PopTransitionPresentationController: UIPresentationController {
     
-    private lazy var overlay: UIView = {
-        let overlay = UIView(frame: .zero)
-        overlay.backgroundColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha: 0.2)
-        return overlay
+    private lazy var overlay: UIVisualEffectView = {
+        return UIVisualEffectView(effect: UIBlurEffect(style: .light))
     }()
     
     override func presentationTransitionWillBegin() {
-        
         guard let containerView = containerView else { return }
         
         overlay.frame = containerView.bounds
         containerView.insertSubview(overlay, at: 0)
-        
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
-            self?.overlay.alpha = 1.0
+                self?.overlay.alpha = 1.0
             }, completion: nil)
     }
     
     override func dismissalTransitionWillBegin() {
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
-            self?.overlay.alpha = 0.0
+                self?.overlay.alpha = 0.0
             }, completion: nil)
     }
-    
-//    override func containerViewWillLayoutSubviews() {
-//
-//        guard let presentedView = presentedView else { return }
-//
-//        //        presentedView.frame = frameOfPresentedViewInContainerView
-//        overlay.blurView.refresh()
-//    }
-    
 }
 

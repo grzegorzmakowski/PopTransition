@@ -14,7 +14,6 @@ internal enum AnimationDirection {
     case hide
 }
 
-
 protocol PopTransitionAnimatorProtocol: UIViewControllerAnimatedTransitioning {
     var to: UIViewController? { get set }
     var from: UIViewController? { get set }
@@ -65,8 +64,7 @@ extension PopTransitionAnimatorProtocol {
     }
 }
 
-
-internal class PopTransitionAnimator: NSObject, PopTransitionAnimatorProtocol {
+class BasePopTransitionAnimator: NSObject, PopTransitionAnimatorProtocol {
     var popContainer: UIViewController?
     var to: UIViewController?
     var from: UIViewController?
@@ -83,29 +81,5 @@ internal class PopTransitionAnimator: NSObject, PopTransitionAnimatorProtocol {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         prepareTransition(using: transitionContext)
-        switch direction {
-        case .show:
-            popContainer?.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
-                guard let self = self else { return }
-                self.popContainer?.view.transform = CGAffineTransform(scaleX: 1, y: 1)
-                }, completion: { _ in
-                    transitionContext.completeTransition(true)
-            })
-        case .hide:
-            guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
-                let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
-            
-            self.to = to
-            self.from = from
-            
-            UIView.animate(withDuration: 0.4, delay: 0.0, options: [.curveEaseIn], animations: { [weak self] in
-                guard let self = self else { return }
-                self.from?.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                self.from?.view.alpha = 0.0
-                }, completion: { _ in
-                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            })
-        }
     }
 }
