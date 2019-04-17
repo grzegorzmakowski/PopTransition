@@ -14,11 +14,63 @@ internal enum AnimationDirection {
     case hide
 }
 
-internal class PopTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+
+protocol PopTransitionAnimatorProtocol: UIViewControllerAnimatedTransitioning {
+    var to: UIViewController? { get set }
+    var from: UIViewController? { get set }
+    var popContainer: UIViewController? { get set }
+    var direction: AnimationDirection { get set }
+}
+
+extension PopTransitionAnimatorProtocol {
+    func prepareTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else { return }
+        guard let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
+        
+        switch direction {
+        case .show:
+            self.to = to
+            self.from = from
+            addPopContainer(to: to, transitionContext: transitionContext)
+        case .hide:
+            self.to = to
+            self.from = from
+        }
+    }
     
-    var to: UIViewController!
-    var from: UIViewController!
-    let direction: AnimationDirection
+    func addPopContainer(to: UIViewController, transitionContext: UIViewControllerContextTransitioning) {
+        let popContainer = UIViewController()
+        popContainer.view.backgroundColor = .clear
+        popContainer.view.frame = to.view.frame
+        
+        to.view.translatesAutoresizingMaskIntoConstraints = false
+        popContainer.view.addSubview(to.view)
+        transitionContext.containerView.addSubview(popContainer.view)
+        
+        let topPriority = to.view.topAnchor.constraint(greaterThanOrEqualTo: popContainer.view.topAnchor, constant: 44)
+        topPriority.priority = UILayoutPriority.defaultHigh
+        topPriority.isActive = true
+        
+        
+        let centerPriority = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
+        centerPriority.priority = UILayoutPriority.required
+        centerPriority.isActive = true
+        
+        let bottomPriority = to.view.bottomAnchor.constraint(greaterThanOrEqualTo: popContainer.view.bottomAnchor, constant: -44)
+        bottomPriority.priority = .defaultHigh
+        bottomPriority.isActive = true
+        to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 40).isActive = true
+        to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -40).isActive = true
+        self.popContainer = popContainer
+    }
+}
+
+
+internal class PopTransitionAnimator: NSObject, PopTransitionAnimatorProtocol {
+    var popContainer: UIViewController?
+    var to: UIViewController?
+    var from: UIViewController?
+    var direction: AnimationDirection
     
     init(direction: AnimationDirection) {
         self.direction = direction
@@ -29,45 +81,14 @@ internal class PopTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         return 0.4
     }
     
-    internal func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        prepareTransition(using: transitionContext)
         switch direction {
         case .show:
-            guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
-                let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
-            
-            self.to = to
-            self.from = from
-            
-            let contener = UIViewController()
-            contener.view.backgroundColor = .clear
-            contener.view.frame = to.view.frame
-            
-            contener.view.addSubview(to.view)
-            
-            let container = transitionContext.containerView
-            container.addSubview(contener.view)
-            
-            to.view.translatesAutoresizingMaskIntoConstraints = false
-//            to.view.heightAnchor.constraint(equalToConstant: 200).isActive = true
-            let topPriority = to.view.topAnchor.constraint(greaterThanOrEqualTo: contener.view.topAnchor, constant: 44)
-            topPriority.priority = UILayoutPriority.defaultHigh
-            topPriority.isActive = true
-            
-            
-            let centerPriority = to.view.centerYAnchor.constraint(equalTo: contener.view.centerYAnchor)
-            centerPriority.priority = UILayoutPriority.required
-            centerPriority.isActive = true
-            
-            let bottomPriority = to.view.bottomAnchor.constraint(greaterThanOrEqualTo: contener.view.bottomAnchor, constant: -44)
-            bottomPriority.priority = .defaultHigh
-            bottomPriority.isActive = true
-            to.view.leadingAnchor.constraint(equalTo: contener.view.leadingAnchor, constant: 40).isActive = true
-            to.view.trailingAnchor.constraint(equalTo: contener.view.trailingAnchor, constant: -40).isActive = true
-            
-            contener.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            popContainer?.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
-                contener.view.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.popContainer?.view.transform = CGAffineTransform(scaleX: 1, y: 1)
                 }, completion: { _ in
                     transitionContext.completeTransition(true)
             })
@@ -80,8 +101,8 @@ internal class PopTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
             
             UIView.animate(withDuration: 0.4, delay: 0.0, options: [.curveEaseIn], animations: { [weak self] in
                 guard let self = self else { return }
-                self.from.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                self.from.view.alpha = 0.0
+                self.from?.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                self.from?.view.alpha = 0.0
                 }, completion: { _ in
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
