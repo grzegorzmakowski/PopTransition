@@ -61,25 +61,28 @@ class SecondViewController: UIViewController {
         view.backgroundColor = .yellow
         view.layer.cornerRadius = 10.0
         view.translatesAutoresizingMaskIntoConstraints = false
+
+        button.addTarget(self, action: .dismissTapped, for: .touchUpInside)
+        secondButton.addTarget(self, action: .dismissTapped, for: .touchUpInside)
+        addFirst()
+    }
+    
+    func addFirst() {
         view.addSubview(button)
         
         button.setTitleColor(.red, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("dissmiss", for: .normal)
-//        button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         button.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 300)
-//        button.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        
-        button.addTarget(self, action: .dismissTapped, for: .touchUpInside)
+        button.heightAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
     func addButton() {
         view.addSubview(secondButton)
-        secondButton.isHidden = true
+        
         secondButton.translatesAutoresizingMaskIntoConstraints = false
         secondButton.backgroundColor = .blue
         secondButton.setTitle("duzy button", for: .normal)
@@ -88,20 +91,16 @@ class SecondViewController: UIViewController {
         secondButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         secondButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         secondButton.heightAnchor.constraint(equalToConstant: 500).isActive = true
-        secondButton.addTarget(self, action: .dismissTapped, for: .touchUpInside)
     }
     
     
     @objc func dismissTapped(_ sender: UIButton) {
         if sender == secondButton {
-            secondButton.isHidden = true
             secondButton.removeFromSuperview()
-            view.layoutIfNeeded()
-            button.isHidden = false
+            addFirst()
         } else {
+            button.removeFromSuperview()
             addButton()
-            secondButton.isHidden = false
-            button.isHidden = true
         }
     }
 }
