@@ -22,6 +22,7 @@ protocol PopTransitionAnimatorProtocol: UIViewControllerAnimatedTransitioning {
 }
 
 extension PopTransitionAnimatorProtocol {
+    
     func prepareTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else { return }
         guard let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
@@ -58,17 +59,22 @@ extension PopTransitionAnimatorProtocol {
         let bottomPriority = to.view.bottomAnchor.constraint(greaterThanOrEqualTo: popContainer.view.bottomAnchor, constant: -44)
         bottomPriority.priority = .defaultHigh
         bottomPriority.isActive = true
-        to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 40).isActive = true
-        to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -40).isActive = true
+        to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 20).isActive = true
+        to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -20).isActive = true
         self.popContainer = popContainer
     }
 }
 
 class BasePopTransitionAnimator: NSObject, PopTransitionAnimatorProtocol {
+    
+    // MARK: - Properties
+    
     var popContainer: UIViewController?
     var to: UIViewController?
     var from: UIViewController?
     var direction: AnimationDirection
+    
+    // MARK: - Initialization
     
     init(direction: AnimationDirection) {
         self.direction = direction

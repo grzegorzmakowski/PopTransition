@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC6DF52C2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */; };
 		DC6DF52E2266FA8A00CEB6D1 /* PopTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */; };
+		DC6DF5312266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF5302266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift */; };
 		DCE2D23A2265F390009C6A7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D2392265F390009C6A7E /* AppDelegate.swift */; };
 		DCE2D23C2265F390009C6A7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D23B2265F390009C6A7E /* ViewController.swift */; };
 		DCE2D23F2265F390009C6A7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE2D23D2265F390009C6A7E /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPopTransitionAnimator.swift; sourceTree = "<group>"; };
 		DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTransitionManager.swift; sourceTree = "<group>"; };
+		DC6DF5302266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncePopTransitionAnimator.swift; sourceTree = "<group>"; };
 		DCE2D2362265F390009C6A7E /* PopTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE2D2392265F390009C6A7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCE2D23B2265F390009C6A7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 				DCE2D24B2265F5EB009C6A7E /* BasePopTransitionAnimator.swift */,
 				DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */,
 				DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */,
+				DC6DF5302266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift */,
 			);
 			path = PopTransitionAnimator;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				DC6DF52C2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift in Sources */,
 				DCE2D23A2265F390009C6A7E /* AppDelegate.swift in Sources */,
 				DCE2D24C2265F5EB009C6A7E /* BasePopTransitionAnimator.swift in Sources */,
+				DC6DF5312266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

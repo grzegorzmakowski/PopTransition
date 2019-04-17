@@ -10,11 +10,16 @@ import UIKit
 
 enum PopTransitionType {
     case zoom
+    case bounce(BouncePopTransitionType)
 }
 
 final class PopTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
     
+    // MARK: - Properties
+    
     let transitionType: PopTransitionType
+    
+    // MARK: - Initialization
     
     init(transitionType: PopTransitionType) {
         self.transitionType = transitionType
@@ -25,6 +30,8 @@ final class PopTransitionManager: NSObject, UIViewControllerTransitioningDelegat
         switch transitionType {
         case .zoom:
             return ZoomPopTransitionAnimator(direction: .show)
+        case .bounce(let bounceType):
+            return BouncePopTransitionAnimator(direction: .show, bounceTransitionType: bounceType)
         }
     }
     
@@ -32,6 +39,8 @@ final class PopTransitionManager: NSObject, UIViewControllerTransitioningDelegat
         switch transitionType {
         case .zoom:
             return ZoomPopTransitionAnimator(direction: .hide)
+        case .bounce(let bounceType):
+            return BouncePopTransitionAnimator(direction: .hide, bounceTransitionType: bounceType)
         }
     }
     

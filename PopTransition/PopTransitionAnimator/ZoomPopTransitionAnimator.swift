@@ -22,8 +22,7 @@ final class ZoomPopTransitionAnimator: BasePopTransitionAnimator {
                            initialSpringVelocity: 0,
                            options: [.curveEaseOut],
                            animations: { [weak self] in
-                            guard let self = self else { return }
-                            self.popContainer?.view.transform = CGAffineTransform(scaleX: 1, y: 1)
+                            self?.popContainer?.view.transform = .identity
                 }, completion: { _ in
                     transitionContext.completeTransition(true)
             })
@@ -32,9 +31,8 @@ final class ZoomPopTransitionAnimator: BasePopTransitionAnimator {
                            delay: 0.0,
                            options: [.curveEaseIn],
                            animations: { [weak self] in
-                            guard let self = self else { return }
-                            self.from?.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                            self.from?.view.alpha = 0.0
+                            self?.from?.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self?.from?.view.alpha = 0.0
                 }, completion: { _ in
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
