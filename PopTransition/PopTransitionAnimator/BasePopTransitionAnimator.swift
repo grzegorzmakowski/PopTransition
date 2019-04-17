@@ -43,24 +43,28 @@ extension PopTransitionAnimatorProtocol {
         popContainer.view.backgroundColor = .clear
         popContainer.view.frame = to.view.frame
         
-        to.view.translatesAutoresizingMaskIntoConstraints = false
-        popContainer.view.addSubview(to.view)
         transitionContext.containerView.addSubview(popContainer.view)
-        
-//        let topPriority = to.view.topAnchor.constraint(greaterThanOrEqualTo: popContainer.view.topAnchor, constant: 44)
-//        topPriority.priority = UILayoutPriority.defaultHigh
-//        topPriority.isActive = true
-        
-        
-        let centerPriority = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
-        centerPriority.priority = UILayoutPriority.required
-        centerPriority.isActive = true
-        
-//        let bottomPriority = to.view.bottomAnchor.constraint(greaterThanOrEqualTo: popContainer.view.bottomAnchor, constant: -44)
-//        bottomPriority.priority = .defaultHigh
-//        bottomPriority.isActive = true
-        to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 20).isActive = true
-        to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -20).isActive = true
+        popContainer.view.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
+        popContainer.view.bottomAnchor.constraint(equalTo: transitionContext.containerView.bottomAnchor).isActive = true
+        popContainer.view.leftAnchor.constraint(equalTo: transitionContext.containerView.leftAnchor).isActive = true
+        popContainer.view.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
+
+        popContainer.view.addSubview(to.view)
+        let center = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
+        center.priority = .required
+        center.isActive = true
+        let top = to.view.topAnchor.constraint(equalTo: popContainer.view.topAnchor, constant: 50)
+        top.priority = .defaultLow
+        top.isActive = true
+        let bottom = to.view.bottomAnchor.constraint(equalTo: popContainer.view.bottomAnchor, constant: -50)
+        bottom.priority = .defaultLow
+        bottom.isActive = true
+        let heigh = to.view.heightAnchor.constraint(greaterThanOrEqualToConstant: 150)
+        heigh.priority = .required
+        heigh.isActive = true
+        to.view.leftAnchor.constraint(equalTo: popContainer.view.leftAnchor, constant: 20).isActive = true
+        to.view.rightAnchor.constraint(equalTo: popContainer.view.rightAnchor, constant: -20).isActive = true
+
         self.popContainer = popContainer
     }
 }
