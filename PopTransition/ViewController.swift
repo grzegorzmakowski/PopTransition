@@ -54,6 +54,8 @@ class SecondViewController: UIViewController {
     
     let button: UIButton = UIButton()
     
+    let secondButton: UIButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
@@ -69,14 +71,38 @@ class SecondViewController: UIViewController {
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         button.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 300)
 //        button.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         button.addTarget(self, action: .dismissTapped, for: .touchUpInside)
     }
     
+    func addButton() {
+        view.addSubview(secondButton)
+        secondButton.isHidden = true
+        secondButton.translatesAutoresizingMaskIntoConstraints = false
+        secondButton.backgroundColor = .blue
+        secondButton.setTitle("duzy button", for: .normal)
+        secondButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        secondButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        secondButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        secondButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        secondButton.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        secondButton.addTarget(self, action: .dismissTapped, for: .touchUpInside)
+    }
     
-    @objc func dismissTapped() {
-        dismiss(animated: true, completion: nil)
+    
+    @objc func dismissTapped(_ sender: UIButton) {
+        if sender == secondButton {
+            secondButton.isHidden = true
+            secondButton.removeFromSuperview()
+            view.layoutIfNeeded()
+            button.isHidden = false
+        } else {
+            addButton()
+            secondButton.isHidden = false
+            button.isHidden = true
+        }
     }
 }
 
