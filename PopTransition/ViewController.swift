@@ -69,7 +69,7 @@ class SecondViewController: UIViewController {
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         button.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 80).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         button.addTarget(self, action: .dismissTapped, for: .touchUpInside)
     }

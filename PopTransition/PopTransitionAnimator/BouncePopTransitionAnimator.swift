@@ -37,7 +37,7 @@ final class BouncePopTransitionAnimator: BasePopTransitionAnimator {
     
     // MARK: - Initialization
     
-    init(direction: AnimationDirection, bounceTransitionType: BouncePopTransitionType) {
+    init(direction: PopAnimationDirection, bounceTransitionType: BouncePopTransitionType) {
         self.bounceTransitionType = bounceTransitionType
         super.init(direction: direction)
     }
