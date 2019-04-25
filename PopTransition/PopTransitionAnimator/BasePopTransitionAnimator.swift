@@ -42,6 +42,7 @@ extension PopTransitionAnimatorProtocol {
         let popContainer = UIViewController()
         popContainer.view.backgroundColor = .clear
         popContainer.view.frame = to.view.frame
+        to.view.translatesAutoresizingMaskIntoConstraints = false
         
         transitionContext.containerView.addSubview(popContainer.view)
         popContainer.view.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
@@ -55,10 +56,6 @@ extension PopTransitionAnimatorProtocol {
     
         // MARK: - PresentedController constraints
         
-        let presentedCenterYConstraint = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
-        presentedCenterYConstraint.priority = .required
-        presentedCenterYConstraint.isActive = true
-        
         let presentedTopConstraint = to.view.topAnchor.constraint(equalTo: popContainer.view.topAnchor, constant: 50)
         presentedTopConstraint.priority = .defaultHigh
         presentedTopConstraint.isActive = true
@@ -66,6 +63,14 @@ extension PopTransitionAnimatorProtocol {
         let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.view.bottomAnchor, constant: -50)
         presentedBottomConstraint.priority = .defaultHigh
         presentedBottomConstraint.isActive = true
+        
+        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 20)
+        presentedLeftConstraint.priority = .defaultHigh
+        presentedLeftConstraint.isActive = true
+        
+        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -20)
+        presentedRightConstraint.priority = .defaultHigh
+        presentedRightConstraint.isActive = true
         
         let presentedHeightConstraint: NSLayoutConstraint
         if to.preferredContentSize.height > 0 {
@@ -76,21 +81,17 @@ extension PopTransitionAnimatorProtocol {
         presentedHeightConstraint.priority = .required
         presentedHeightConstraint.isActive = true
         
-        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 20)
-        presentedLeftConstraint.priority = .defaultHigh
-        presentedLeftConstraint.isActive = true
+        let presentedWidthConstraint = to.view.widthAnchor.constraint(equalToConstant: to.preferredContentSize.width)
+        presentedWidthConstraint.priority = .required
+        presentedWidthConstraint.isActive = to.preferredContentSize.width > 0
         
-        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -20)
-        presentedRightConstraint.priority = .defaultHigh
-        presentedRightConstraint.isActive = true
+        let presentedCenterYConstraint = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
+        presentedCenterYConstraint.priority = .required
+        presentedCenterYConstraint.isActive = true
         
         let presentedCenterXConstraint = to.view.centerXAnchor.constraint(equalTo: popContainer.view.centerXAnchor)
         presentedCenterXConstraint.priority = .required
         presentedCenterXConstraint.isActive = to.preferredContentSize.width > 0
-        
-        let presentedWidthConstraint = to.view.widthAnchor.constraint(equalToConstant: to.preferredContentSize.width)
-        presentedWidthConstraint.priority = .required
-        presentedWidthConstraint.isActive = to.preferredContentSize.width > 0
 
         self.popContainer = popContainer
     }
