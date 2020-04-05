@@ -67,6 +67,16 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		1600CBA7243A6DB10073350E /* Shit */ = {
+			isa = PBXGroup;
+			children = (
+				DCE2D2392265F390009C6A7E /* AppDelegate.swift */,
+				DCE2D2402265F392009C6A7E /* Assets.xcassets */,
+				DCE2D2422265F392009C6A7E /* LaunchScreen.storyboard */,
+			);
+			path = Shit;
+			sourceTree = "<group>";
+		};
 		16395E662439193F00BC59A8 /* Bounce */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,12 +192,10 @@
 		DCE2D2382265F390009C6A7E /* PopTransition */ = {
 			isa = PBXGroup;
 			children = (
+				DCE2D2452265F392009C6A7E /* Info.plist */,
+				1600CBA7243A6DB10073350E /* Shit */,
 				1600CB9E243A44D40073350E /* ViewControllers */,
 				DC6DF52A2266F8E200CEB6D1 /* PopTransitionAnimator */,
-				DCE2D2392265F390009C6A7E /* AppDelegate.swift */,
-				DCE2D2402265F392009C6A7E /* Assets.xcassets */,
-				DCE2D2422265F392009C6A7E /* LaunchScreen.storyboard */,
-				DCE2D2452265F392009C6A7E /* Info.plist */,
 				1600CBA5243A5A740073350E /* Extensions.swift */,
 			);
 			path = PopTransition;
