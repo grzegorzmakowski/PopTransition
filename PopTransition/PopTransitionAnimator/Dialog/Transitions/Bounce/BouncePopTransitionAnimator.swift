@@ -15,7 +15,7 @@ enum BouncePopTransitionType {
     case right
 }
 
-final class BouncePopTransitionAnimator: BasePopTransitionAnimator {
+final class BouncePopTransitionAnimator: PopDialogAnimatorTransition {
     
     // MARK: - Properties
     
@@ -47,19 +47,19 @@ final class BouncePopTransitionAnimator: BasePopTransitionAnimator {
         
         switch direction {
         case .show:
-            popContainer?.view.transform = tranform
-            UIView.animate(withDuration: 0.4,
+            popContainer.view.transform = tranform
+            UIView.animate(withDuration: transitionDuration,
                            delay: 0.0,
                            usingSpringWithDamping: 0.7,
                            initialSpringVelocity: 0,
                            options: [.curveEaseOut],
                            animations: { [weak self] in
-                            self?.popContainer?.view.transform = .identity
+                            self?.popContainer.view.transform = .identity
                 }, completion: { _ in
                     transitionContext.completeTransition(true)
             })
         case .hide:
-            UIView.animate(withDuration: 0.4,
+            UIView.animate(withDuration: transitionDuration,
                            delay: 0.0,
                            options: [.curveEaseIn],
                            animations: { [weak self] in

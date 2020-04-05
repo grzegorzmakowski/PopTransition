@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class PopTransitionPresentationController: UIPresentationController {
+final class BaseTransitionPresentationController: UIPresentationController {
     
     private let overlay: UIView = UIView.blurView
     
@@ -17,6 +17,7 @@ final class PopTransitionPresentationController: UIPresentationController {
         guard let containerView = containerView else { return }
         
         overlay.frame = containerView.bounds
+        overlay.alpha = 0.0
         containerView.insertSubview(overlay, at: 0)
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
                 self?.overlay.alpha = 1.0

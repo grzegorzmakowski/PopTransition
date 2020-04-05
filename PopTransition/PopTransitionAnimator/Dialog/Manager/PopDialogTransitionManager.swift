@@ -13,7 +13,7 @@ enum PopTransitionType {
     case bounce(BouncePopTransitionType)
 }
 
-final class PopTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
+final class PopDialogTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
     
     // MARK: - Properties
     
@@ -45,7 +45,7 @@ final class PopTransitionManager: NSObject, UIViewControllerTransitioningDelegat
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let presentationController = PopTransitionPresentationController(presentedViewController: presented, presenting: source)
+        let presentationController = BaseTransitionPresentationController(presentedViewController: presented, presenting: source)
         return presentationController
     }
 }

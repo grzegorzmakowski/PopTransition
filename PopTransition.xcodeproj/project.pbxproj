@@ -7,21 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16395E6D2439D1BF00BC59A8 /* SlideDismissInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16395E6C2439D1BF00BC59A8 /* SlideDismissInteractiveTransition.swift */; };
+		16395E6F2439D7D000BC59A8 /* PopDialogTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16395E6E2439D7D000BC59A8 /* PopDialogTransitionManager.swift */; };
+		16395E742439D8CA00BC59A8 /* PopDialogAnimatorTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16395E732439D8CA00BC59A8 /* PopDialogAnimatorTransition.swift */; };
+		16395E772439D8F600BC59A8 /* PopAnimatorTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16395E762439D8F600BC59A8 /* PopAnimatorTransitioning.swift */; };
+		16395E7C2439DA3100BC59A8 /* SlideTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16395E7B2439DA3100BC59A8 /* SlideTransitionManager.swift */; };
+		16395E7E2439E83A00BC59A8 /* SlidePopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16395E7D2439E83A00BC59A8 /* SlidePopTransitionAnimator.swift */; };
 		DC6DF52C2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */; };
-		DC6DF52E2266FA8A00CEB6D1 /* PopTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */; };
 		DC6DF5312266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DF5302266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift */; };
 		DCE2D23A2265F390009C6A7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D2392265F390009C6A7E /* AppDelegate.swift */; };
 		DCE2D23C2265F390009C6A7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D23B2265F390009C6A7E /* ViewController.swift */; };
 		DCE2D23F2265F390009C6A7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE2D23D2265F390009C6A7E /* Main.storyboard */; };
 		DCE2D2412265F392009C6A7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE2D2402265F392009C6A7E /* Assets.xcassets */; };
 		DCE2D2442265F392009C6A7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE2D2422265F392009C6A7E /* LaunchScreen.storyboard */; };
-		DCE2D24C2265F5EB009C6A7E /* BasePopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D24B2265F5EB009C6A7E /* BasePopTransitionAnimator.swift */; };
-		DCE2D24E2265FD52009C6A7E /* PopTransitionPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D24D2265FD52009C6A7E /* PopTransitionPresentationController.swift */; };
+		DCE2D24E2265FD52009C6A7E /* BaseTransitionPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D24D2265FD52009C6A7E /* BaseTransitionPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16395E6C2439D1BF00BC59A8 /* SlideDismissInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideDismissInteractiveTransition.swift; sourceTree = "<group>"; };
+		16395E6E2439D7D000BC59A8 /* PopDialogTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDialogTransitionManager.swift; sourceTree = "<group>"; };
+		16395E732439D8CA00BC59A8 /* PopDialogAnimatorTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDialogAnimatorTransition.swift; sourceTree = "<group>"; };
+		16395E762439D8F600BC59A8 /* PopAnimatorTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimatorTransitioning.swift; sourceTree = "<group>"; };
+		16395E7B2439DA3100BC59A8 /* SlideTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTransitionManager.swift; sourceTree = "<group>"; };
+		16395E7D2439E83A00BC59A8 /* SlidePopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidePopTransitionAnimator.swift; sourceTree = "<group>"; };
 		DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPopTransitionAnimator.swift; sourceTree = "<group>"; };
-		DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTransitionManager.swift; sourceTree = "<group>"; };
 		DC6DF5302266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncePopTransitionAnimator.swift; sourceTree = "<group>"; };
 		DCE2D2362265F390009C6A7E /* PopTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE2D2392265F390009C6A7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,8 +39,7 @@
 		DCE2D2402265F392009C6A7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCE2D2432265F392009C6A7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCE2D2452265F392009C6A7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCE2D24B2265F5EB009C6A7E /* BasePopTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopTransitionAnimator.swift; sourceTree = "<group>"; };
-		DCE2D24D2265FD52009C6A7E /* PopTransitionPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTransitionPresentationController.swift; sourceTree = "<group>"; };
+		DCE2D24D2265FD52009C6A7E /* BaseTransitionPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransitionPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,14 +53,98 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16395E662439193F00BC59A8 /* Bounce */ = {
+			isa = PBXGroup;
+			children = (
+				DC6DF5302266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift */,
+			);
+			path = Bounce;
+			sourceTree = "<group>";
+		};
+		16395E672439195B00BC59A8 /* Zoom */ = {
+			isa = PBXGroup;
+			children = (
+				DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */,
+			);
+			path = Zoom;
+			sourceTree = "<group>";
+		};
+		16395E682439196B00BC59A8 /* Slide */ = {
+			isa = PBXGroup;
+			children = (
+				16395E792439DA0800BC59A8 /* Transitions */,
+				16395E7A2439DA0D00BC59A8 /* Manager */,
+				16395E6B2439D18C00BC59A8 /* Interaction */,
+			);
+			path = Slide;
+			sourceTree = "<group>";
+		};
+		16395E6B2439D18C00BC59A8 /* Interaction */ = {
+			isa = PBXGroup;
+			children = (
+				16395E6C2439D1BF00BC59A8 /* SlideDismissInteractiveTransition.swift */,
+			);
+			path = Interaction;
+			sourceTree = "<group>";
+		};
+		16395E702439D7D600BC59A8 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				16395E722439D7FA00BC59A8 /* Transitions */,
+				16395E712439D7EA00BC59A8 /* Manager */,
+			);
+			path = Dialog;
+			sourceTree = "<group>";
+		};
+		16395E712439D7EA00BC59A8 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				16395E6E2439D7D000BC59A8 /* PopDialogTransitionManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		16395E722439D7FA00BC59A8 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				16395E732439D8CA00BC59A8 /* PopDialogAnimatorTransition.swift */,
+				16395E672439195B00BC59A8 /* Zoom */,
+				16395E662439193F00BC59A8 /* Bounce */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		16395E752439D8ED00BC59A8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DCE2D24D2265FD52009C6A7E /* BaseTransitionPresentationController.swift */,
+				16395E762439D8F600BC59A8 /* PopAnimatorTransitioning.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		16395E792439DA0800BC59A8 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				16395E7D2439E83A00BC59A8 /* SlidePopTransitionAnimator.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		16395E7A2439DA0D00BC59A8 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				16395E7B2439DA3100BC59A8 /* SlideTransitionManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		DC6DF52A2266F8E200CEB6D1 /* PopTransitionAnimator */ = {
 			isa = PBXGroup;
 			children = (
-				DCE2D24D2265FD52009C6A7E /* PopTransitionPresentationController.swift */,
-				DCE2D24B2265F5EB009C6A7E /* BasePopTransitionAnimator.swift */,
-				DC6DF52B2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift */,
-				DC6DF52D2266FA8A00CEB6D1 /* PopTransitionManager.swift */,
-				DC6DF5302266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift */,
+				16395E752439D8ED00BC59A8 /* Common */,
+				16395E702439D7D600BC59A8 /* Dialog */,
+				16395E682439196B00BC59A8 /* Slide */,
 			);
 			path = PopTransitionAnimator;
 			sourceTree = "<group>";
@@ -158,12 +250,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6DF52E2266FA8A00CEB6D1 /* PopTransitionManager.swift in Sources */,
+				16395E6D2439D1BF00BC59A8 /* SlideDismissInteractiveTransition.swift in Sources */,
 				DCE2D23C2265F390009C6A7E /* ViewController.swift in Sources */,
-				DCE2D24E2265FD52009C6A7E /* PopTransitionPresentationController.swift in Sources */,
+				DCE2D24E2265FD52009C6A7E /* BaseTransitionPresentationController.swift in Sources */,
+				16395E772439D8F600BC59A8 /* PopAnimatorTransitioning.swift in Sources */,
+				16395E7E2439E83A00BC59A8 /* SlidePopTransitionAnimator.swift in Sources */,
+				16395E742439D8CA00BC59A8 /* PopDialogAnimatorTransition.swift in Sources */,
 				DC6DF52C2266F90100CEB6D1 /* ZoomPopTransitionAnimator.swift in Sources */,
+				16395E7C2439DA3100BC59A8 /* SlideTransitionManager.swift in Sources */,
+				16395E6F2439D7D000BC59A8 /* PopDialogTransitionManager.swift in Sources */,
 				DCE2D23A2265F390009C6A7E /* AppDelegate.swift in Sources */,
-				DCE2D24C2265F5EB009C6A7E /* BasePopTransitionAnimator.swift in Sources */,
 				DC6DF5312266FF7400CEB6D1 /* BouncePopTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,15 +407,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8DXR5A8P5D;
+				DEVELOPMENT_TEAM = G27G5GURR5;
 				INFOPLIST_FILE = PopTransition/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.makowski.grzegorz.PopTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -329,15 +426,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8DXR5A8P5D;
+				DEVELOPMENT_TEAM = G27G5GURR5;
 				INFOPLIST_FILE = PopTransition/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.makowski.grzegorz.PopTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

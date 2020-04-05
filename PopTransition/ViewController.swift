@@ -13,16 +13,8 @@ fileprivate extension Selector {
 }
 
 class ViewController: UIViewController {
-    
-    let popTransition: BasePopTransitionAnimator = ZoomPopTransitionAnimator(direction: .show)
-    let hideTransition: BasePopTransitionAnimator = ZoomPopTransitionAnimator(direction: .hide)
-    
-    let popManager: PopTransitionManager = PopTransitionManager(transitionType: .zoom)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+
+    let popManager: SlideTransitionManager = SlideTransitionManager()
 
     @IBAction func showCustom(_ sender: Any) {
         let second = SecondViewController()
@@ -37,16 +29,15 @@ class ViewController: UIViewController {
 extension ViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return popTransition
+        return popManager.animationController(forPresented: presented, presenting: presenting, source: source)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return hideTransition
+        return popManager.animationController(forDismissed: dismissed)
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let presentationController = PopTransitionPresentationController(presentedViewController: presented, presenting: source)
-        return presentationController
+        return popManager.presentationController(forPresented: presented, presenting: presenting, source: source)
     }
 }
 
@@ -56,26 +47,29 @@ class SecondViewController: UIViewController {
     
     let secondButton: UIButton = UIButton()
     
-//    override var preferredContentSize: CGSize {
-//        get {
-//            return CGSize(width: 100, height: 100)
-//        }
-//        set {
-//            super.preferredContentSize = newValue
-//        }
-//    }
+    override var preferredContentSize: CGSize {
+        get {
+            return CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height / 2)
+        }
+        set {
+            super.preferredContentSize = newValue
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
-        view.layer.cornerRadius = 10.0
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 20
+        view.layer.shadowOpacity = 0.44
+        view.layer.shadowRadius = 13.0
+        view.layer.shadowOffset = CGSize(width: 0.0, height: -6.0)
 
         button.addTarget(self, action: .dismissTapped, for: .touchUpInside)
         secondButton.addTarget(self, action: .dismissTapped, for: .touchUpInside)
         addFirst()
     }
-    
+
     func addFirst() {
         view.addSubview(button)
         
@@ -84,9 +78,9 @@ class SecondViewController: UIViewController {
         button.setTitle("dissmiss", for: .normal)
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        button.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        button.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 300).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
     func addButton() {
@@ -99,7 +93,7 @@ class SecondViewController: UIViewController {
         secondButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         secondButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         secondButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        secondButton.heightAnchor.constraint(equalToConstant: 500).isActive = true
+//        secondButton.heightAnchor.constraint(equalToConstant: 500).isActive = true
     }
     
     
@@ -108,8 +102,9 @@ class SecondViewController: UIViewController {
             secondButton.removeFromSuperview()
             addFirst()
         } else {
-            button.removeFromSuperview()
-            addButton()
+//            button.removeFromSuperview()
+//            addButton()
+            dismiss(animated: true, completion: nil)
         }
     }
 }

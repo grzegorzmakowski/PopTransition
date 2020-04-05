@@ -6,22 +6,33 @@
 //  Copyright © 2019 X349471. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-internal enum PopAnimationDirection {
-    case show
-    case hide
-}
-
-protocol PopTransitionAnimatorProtocol: UIViewControllerAnimatedTransitioning {
-    var to: UIViewController? { get set }
-    var from: UIViewController? { get set }
-    var popContainer: UIViewController? { get set }
-    var direction: PopAnimationDirection { get set }
-}
-
-extension PopTransitionAnimatorProtocol {
+class PopDialogAnimatorTransition: NSObject, PopAnimatorTransitioning {
+    
+    // MARK: - Properties
+    
+    lazy var popContainer: UIViewController = { return UIViewController() }()
+    var to: UIViewController?
+    var from: UIViewController?
+    var direction: PopAnimationDirection
+    
+    var transitionDuration: Double { return 0.4 }
+    
+    // MARK: - Initialization
+    
+    init(direction: PopAnimationDirection) {
+        self.direction = direction
+        super.init()
+    }
+    
+    internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return transitionDuration
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        prepareTransition(using: transitionContext)
+    }
     
     func prepareTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else { return }
@@ -39,7 +50,6 @@ extension PopTransitionAnimatorProtocol {
     }
     
     func addPopContainer(to: UIViewController, transitionContext: UIViewControllerContextTransitioning) {
-        let popContainer = UIViewController()
         popContainer.view.backgroundColor = .clear
         popContainer.view.frame = to.view.frame
         to.view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,32 +102,5 @@ extension PopTransitionAnimatorProtocol {
         let presentedCenterXConstraint = to.view.centerXAnchor.constraint(equalTo: popContainer.view.centerXAnchor)
         presentedCenterXConstraint.priority = .required
         presentedCenterXConstraint.isActive = to.preferredContentSize.width > 0
-
-        self.popContainer = popContainer
-    }
-}
-
-class BasePopTransitionAnimator: NSObject, PopTransitionAnimatorProtocol {
-    
-    // MARK: - Properties
-    
-    var popContainer: UIViewController?
-    var to: UIViewController?
-    var from: UIViewController?
-    var direction: PopAnimationDirection
-    
-    // MARK: - Initialization
-    
-    init(direction: PopAnimationDirection) {
-        self.direction = direction
-        super.init()
-    }
-    
-    internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
-    }
-    
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        prepareTransition(using: transitionContext)
     }
 }
