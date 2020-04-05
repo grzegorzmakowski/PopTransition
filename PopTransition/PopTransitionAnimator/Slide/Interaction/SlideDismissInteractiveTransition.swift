@@ -34,7 +34,6 @@ final class SlideDismissInteractiveTransition: UIPercentDrivenInteractiveTransit
         guard let view = sender.view else { return }
         let percentThreshold: CGFloat = 0.5
 
-        // convert y-position to downward pull progress (percentage)
         let translation = sender.translation(in: view)
         let verticalMovement = translation.y / view.bounds.height
         let downwardMovement = fmaxf(Float(verticalMovement), 0.0)

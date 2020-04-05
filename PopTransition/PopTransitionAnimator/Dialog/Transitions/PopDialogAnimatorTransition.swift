@@ -12,11 +12,10 @@ class PopDialogAnimatorTransition: NSObject, PopAnimatorTransitioning {
     
     // MARK: - Properties
     
-    lazy var popContainer: UIView = { return UIView() }()
     var to: UIViewController?
     var from: UIViewController?
+    lazy var popContainer: UIView = { return UIView() }()
     var direction: PopAnimationDirection
-    
     var transitionDuration: Double { return 0.4 }
     
     // MARK: - Initialization

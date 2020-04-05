@@ -48,27 +48,33 @@ final class BouncePopTransitionAnimator: PopDialogAnimatorTransition {
         switch direction {
         case .show:
             popContainer.transform = tranform
-            UIView.animate(withDuration: transitionDuration,
-                           delay: 0.0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0,
-                           options: [.curveEaseOut],
-                           animations: { [weak self] in
-                            self?.popContainer.transform = .identity
-                }, completion: { _ in
+            UIView.animate(
+                withDuration: transitionDuration,
+                delay: 0.0,
+                usingSpringWithDamping: 0.7,
+                initialSpringVelocity: 0,
+                options: [.curveEaseOut],
+                animations: { [weak self] in
+                    self?.popContainer.transform = .identity
+                },
+                completion: { _ in
                     transitionContext.completeTransition(true)
-            })
+                }
+            )
         case .hide:
-            UIView.animate(withDuration: transitionDuration,
-                           delay: 0.0,
-                           options: [.curveEaseIn],
-                           animations: { [weak self] in
-                            guard let self = self else { return }
-                            self.from?.view.transform = self.tranform
-                            self.from?.view.alpha = 0.0
-                }, completion: { _ in
+            UIView.animate(
+                withDuration: transitionDuration,
+                delay: 0.0,
+                options: [.curveEaseIn],
+                animations: { [weak self] in
+                    guard let self = self else { return }
+                    self.from?.view.transform = self.tranform
+                    self.from?.view.alpha = 0.0
+                },
+                completion: { _ in
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            })
+                }
+            )
         }
     }
 }

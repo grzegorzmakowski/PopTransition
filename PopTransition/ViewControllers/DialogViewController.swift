@@ -28,7 +28,7 @@ class DialogViewController: UIViewController {
         let imageView = Subviews.imageView
         view.addSubview(imageView)
         imageView.activate([
-//            view.widthAnchor.constraint(equalToConstant: 200),
+//            view.widthAnchor.constraint(equalToConstant: 200), //you can uncomment to see if working, dialog will be smaller
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
