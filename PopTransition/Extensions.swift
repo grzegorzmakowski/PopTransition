@@ -9,11 +9,10 @@
 import UIKit
 
 extension UIView {
-    
     static var blurView: UIView {
         if UIAccessibility.isReduceTransparencyEnabled {
             let view = UIView()
-            view.backgroundColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha: 0.7)
+            view.backgroundColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha: 0.65)
             return view
         } else {
             return UIVisualEffectView(effect: UIBlurEffect(style: .light))

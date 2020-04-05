@@ -16,7 +16,7 @@ class SlideViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .lightGray
         view.layer.cornerRadius = 20
         view.layer.shadowOpacity = 0.44
         view.layer.shadowRadius = 13.0

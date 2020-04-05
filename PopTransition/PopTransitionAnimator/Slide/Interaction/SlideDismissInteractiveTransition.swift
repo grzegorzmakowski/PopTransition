@@ -10,6 +10,7 @@ import UIKit
 
 fileprivate extension Selector {
     static let handleGestureInPopContainer = #selector(SlideDismissInteractiveTransition.handleGestureInPopContainer)
+    static let dismissTapped = #selector(SlideDismissInteractiveTransition.dismissTapped)
 }
 
 final class SlideDismissInteractiveTransition: UIPercentDrivenInteractiveTransition {
@@ -28,6 +29,10 @@ final class SlideDismissInteractiveTransition: UIPercentDrivenInteractiveTransit
         guard let view = popContainer else { return }
         let panDown = UIPanGestureRecognizer(target: self, action: .handleGestureInPopContainer)
         view.addGestureRecognizer(panDown)
+        
+        let dismissTapGestureRecognizer = UITapGestureRecognizer(target: self, action: .dismissTapped)
+        dismissTapGestureRecognizer.delegate = self
+        view.addGestureRecognizer(dismissTapGestureRecognizer)
     }
     
     @objc fileprivate func handleGestureInPopContainer(_ sender: UIPanGestureRecognizer) {
@@ -66,5 +71,15 @@ final class SlideDismissInteractiveTransition: UIPercentDrivenInteractiveTransit
         default:
             break
         }
+    }
+    
+    @objc fileprivate func dismissTapped(_ sender: UITapGestureRecognizer) {
+        presenting?.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SlideDismissInteractiveTransition: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view == gestureRecognizer.view
     }
 }
