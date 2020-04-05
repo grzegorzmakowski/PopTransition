@@ -16,25 +16,21 @@ final class SlideDismissInteractiveTransition: UIPercentDrivenInteractiveTransit
     
     var interactionInProgress: Bool = false
     private var shouldCompleteTransition = false
-    weak var presenting: UIViewController?
-    weak var presented: UIViewController?
-    weak var popContainer: UIView?
+    private weak var presenting: UIViewController?
     
-    init(presenting: UIViewController?, presented: UIViewController?, popContainer: UIViewController?) {
+    init(presenting: UIViewController?, popContainer: UIView?) {
         super.init()
         self.presenting = presenting
-        self.presented = presented
-        self.popContainer = popContainer?.view
         self.prepareGestureRecognizers(for: popContainer)
     }
     
-    private func prepareGestureRecognizers(for popContainer: UIViewController?) {
-        guard let view = popContainer?.view else { return }
+    private func prepareGestureRecognizers(for popContainer: UIView?) {
+        guard let view = popContainer else { return }
         let panDown = UIPanGestureRecognizer(target: self, action: .handleGestureInPopContainer)
         view.addGestureRecognizer(panDown)
     }
     
-    @objc func handleGestureInPopContainer(_ sender: UIPanGestureRecognizer) {
+    @objc fileprivate func handleGestureInPopContainer(_ sender: UIPanGestureRecognizer) {
         guard let view = sender.view else { return }
         let percentThreshold: CGFloat = 0.5
 

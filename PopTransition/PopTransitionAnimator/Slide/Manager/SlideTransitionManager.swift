@@ -14,18 +14,10 @@ final class SlideTransitionManager: NSObject, UIViewControllerTransitioningDeleg
     
     private var interactor: SlideDismissInteractiveTransition?
     
-    // MARK: - Initialization
-    
-//    init(transitionType: PopTransitionType) {
-//        self.transitionType = transitionType
-//        super.init()
-//    }
-    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let transitionAnimator = SlidePopTransitionAnimator(direction: .show)
         self.interactor = SlideDismissInteractiveTransition(
             presenting: presenting,
-            presented: presented,
             popContainer: transitionAnimator.popContainer
         )
         return transitionAnimator

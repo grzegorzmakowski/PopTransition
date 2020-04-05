@@ -16,7 +16,7 @@ internal enum PopAnimationDirection {
 protocol PopAnimatorTransitioning: UIViewControllerAnimatedTransitioning {
     var to: UIViewController? { get set }
     var from: UIViewController? { get set }
-    var popContainer: UIViewController { get set }
+    var popContainer: UIView { get set }
     var direction: PopAnimationDirection { get set }
     var transitionDuration: Double { get }
     func prepareTransition(using transitionContext: UIViewControllerContextTransitioning)

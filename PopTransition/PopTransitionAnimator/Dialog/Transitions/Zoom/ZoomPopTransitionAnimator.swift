@@ -15,14 +15,14 @@ final class ZoomPopTransitionAnimator: PopDialogAnimatorTransition {
         
         switch direction {
         case .show:
-            popContainer.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            popContainer.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             UIView.animate(withDuration: transitionDuration,
                            delay: 0.0,
                            usingSpringWithDamping: 0.5,
                            initialSpringVelocity: 0,
                            options: [.curveEaseOut],
                            animations: { [weak self] in
-                            self?.popContainer.view.transform = .identity
+                            self?.popContainer.transform = .identity
                 }, completion: { _ in
                     transitionContext.completeTransition(true)
             })

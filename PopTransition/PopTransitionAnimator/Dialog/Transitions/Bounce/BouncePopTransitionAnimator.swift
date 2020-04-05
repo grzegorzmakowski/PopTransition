@@ -47,14 +47,14 @@ final class BouncePopTransitionAnimator: PopDialogAnimatorTransition {
         
         switch direction {
         case .show:
-            popContainer.view.transform = tranform
+            popContainer.transform = tranform
             UIView.animate(withDuration: transitionDuration,
                            delay: 0.0,
                            usingSpringWithDamping: 0.7,
                            initialSpringVelocity: 0,
                            options: [.curveEaseOut],
                            animations: { [weak self] in
-                            self?.popContainer.view.transform = .identity
+                            self?.popContainer.transform = .identity
                 }, completion: { _ in
                     transitionContext.completeTransition(true)
             })

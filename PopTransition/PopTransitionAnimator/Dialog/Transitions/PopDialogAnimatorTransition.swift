@@ -12,7 +12,7 @@ class PopDialogAnimatorTransition: NSObject, PopAnimatorTransitioning {
     
     // MARK: - Properties
     
-    lazy var popContainer: UIViewController = { return UIViewController() }()
+    lazy var popContainer: UIView = { return UIView() }()
     var to: UIViewController?
     var from: UIViewController?
     var direction: PopAnimationDirection
@@ -50,35 +50,35 @@ class PopDialogAnimatorTransition: NSObject, PopAnimatorTransitioning {
     }
     
     func addPopContainer(to: UIViewController, transitionContext: UIViewControllerContextTransitioning) {
-        popContainer.view.backgroundColor = .clear
-        popContainer.view.frame = to.view.frame
+        popContainer.backgroundColor = .clear
+        popContainer.frame = to.view.frame
         to.view.translatesAutoresizingMaskIntoConstraints = false
         
-        transitionContext.containerView.addSubview(popContainer.view)
-        popContainer.view.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
-        popContainer.view.bottomAnchor.constraint(equalTo: transitionContext.containerView.bottomAnchor).isActive = true
-        popContainer.view.leftAnchor.constraint(equalTo: transitionContext.containerView.leftAnchor).isActive = true
-        popContainer.view.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
+        transitionContext.containerView.addSubview(popContainer)
+        popContainer.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
+        popContainer.bottomAnchor.constraint(equalTo: transitionContext.containerView.bottomAnchor).isActive = true
+        popContainer.leftAnchor.constraint(equalTo: transitionContext.containerView.leftAnchor).isActive = true
+        popContainer.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
 
-        popContainer.view.addSubview(to.view)
+        popContainer.addSubview(to.view)
         
         let minimumContentHeight = to.preferredContentSize.height == 0 ? 150 : to.preferredContentSize.height
     
         // MARK: - PresentedController constraints
         
-        let presentedTopConstraint = to.view.topAnchor.constraint(equalTo: popContainer.view.topAnchor, constant: 50)
+        let presentedTopConstraint = to.view.topAnchor.constraint(equalTo: popContainer.topAnchor, constant: 50)
         presentedTopConstraint.priority = .defaultHigh
         presentedTopConstraint.isActive = true
         
-        let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.view.bottomAnchor, constant: -50)
+        let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.bottomAnchor, constant: -50)
         presentedBottomConstraint.priority = .defaultHigh
         presentedBottomConstraint.isActive = true
         
-        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor, constant: 20)
+        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.leadingAnchor, constant: 20)
         presentedLeftConstraint.priority = .defaultHigh
         presentedLeftConstraint.isActive = true
         
-        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor, constant: -20)
+        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.trailingAnchor, constant: -20)
         presentedRightConstraint.priority = .defaultHigh
         presentedRightConstraint.isActive = true
         
@@ -95,11 +95,11 @@ class PopDialogAnimatorTransition: NSObject, PopAnimatorTransitioning {
         presentedWidthConstraint.priority = .required
         presentedWidthConstraint.isActive = to.preferredContentSize.width > 0
         
-        let presentedCenterYConstraint = to.view.centerYAnchor.constraint(equalTo: popContainer.view.centerYAnchor)
+        let presentedCenterYConstraint = to.view.centerYAnchor.constraint(equalTo: popContainer.centerYAnchor)
         presentedCenterYConstraint.priority = .required
         presentedCenterYConstraint.isActive = true
         
-        let presentedCenterXConstraint = to.view.centerXAnchor.constraint(equalTo: popContainer.view.centerXAnchor)
+        let presentedCenterXConstraint = to.view.centerXAnchor.constraint(equalTo: popContainer.centerXAnchor)
         presentedCenterXConstraint.priority = .required
         presentedCenterXConstraint.isActive = to.preferredContentSize.width > 0
     }

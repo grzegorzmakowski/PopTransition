@@ -14,7 +14,7 @@ class SlidePopTransitionAnimator: NSObject, PopAnimatorTransitioning {
     
     var to: UIViewController?
     var from: UIViewController?
-    lazy var popContainer: UIViewController = { return UIViewController() }()
+    lazy var popContainer: UIView = { return UIView() }()
     var direction: PopAnimationDirection
     var transitionDuration: Double { return 0.4 }
     
@@ -38,13 +38,13 @@ class SlidePopTransitionAnimator: NSObject, PopAnimatorTransitioning {
         prepareTransition(using: transitionContext)
         switch direction {
         case .show:
-            popContainer.view.transform = tranform
+            popContainer.transform = tranform
             UIView.animate(
                 withDuration: transitionDuration,
                 delay: 0.0,
                 options: [.curveLinear],
                 animations: { [weak self] in
-                    self?.popContainer.view.transform = .identity
+                    self?.popContainer.transform = .identity
                 },
                 completion: { _ in
                     transitionContext.completeTransition(true)
@@ -83,35 +83,35 @@ class SlidePopTransitionAnimator: NSObject, PopAnimatorTransitioning {
     }
     
     func addPopContainer(to: UIViewController, transitionContext: UIViewControllerContextTransitioning) {
-        popContainer.view.backgroundColor = .clear
-        popContainer.view.frame = to.view.frame
+        popContainer.backgroundColor = .clear
+        popContainer.frame = to.view.frame
         to.view.translatesAutoresizingMaskIntoConstraints = false
         
-        transitionContext.containerView.addSubview(popContainer.view)
-        popContainer.view.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
-        popContainer.view.bottomAnchor.constraint(equalTo: transitionContext.containerView.bottomAnchor).isActive = true
-        popContainer.view.leftAnchor.constraint(equalTo: transitionContext.containerView.leftAnchor).isActive = true
-        popContainer.view.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
+        transitionContext.containerView.addSubview(popContainer)
+        popContainer.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
+        popContainer.bottomAnchor.constraint(equalTo: transitionContext.containerView.bottomAnchor).isActive = true
+        popContainer.leftAnchor.constraint(equalTo: transitionContext.containerView.leftAnchor).isActive = true
+        popContainer.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
 
-        popContainer.view.addSubview(to.view)
+        popContainer.addSubview(to.view)
         
         let minimumContentHeight = to.preferredContentSize.height == 0 ? 150 : to.preferredContentSize.height
     
         // MARK: - PresentedController constraints
         
-        let presentedTopConstraint = to.view.topAnchor.constraint(greaterThanOrEqualTo: popContainer.view.topAnchor, constant: 50)
+        let presentedTopConstraint = to.view.topAnchor.constraint(greaterThanOrEqualTo: popContainer.topAnchor, constant: 50)
         presentedTopConstraint.priority = .defaultHigh
         presentedTopConstraint.isActive = true
         
-        let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.view.bottomAnchor)
+        let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.bottomAnchor)
         presentedBottomConstraint.priority = .required
         presentedBottomConstraint.isActive = true
         
-        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.view.leadingAnchor)
+        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.leadingAnchor)
         presentedLeftConstraint.priority = .required
         presentedLeftConstraint.isActive = true
         
-        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.view.trailingAnchor)
+        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.trailingAnchor)
         presentedRightConstraint.priority = .required
         presentedRightConstraint.isActive = true
         
