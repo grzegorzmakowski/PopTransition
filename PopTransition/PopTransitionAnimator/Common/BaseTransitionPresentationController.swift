@@ -19,28 +19,18 @@ final class BaseTransitionPresentationController: UIPresentationController {
         overlay.frame = containerView.bounds
         overlay.alpha = 0.0
         containerView.insertSubview(overlay, at: 0)
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
-                self?.overlay.alpha = 1.0
-            }, completion: nil)
+        presentedViewController.transitionCoordinator?
+            .animate(
+                alongsideTransition: { [weak self] _ in self?.overlay.alpha = 1.0 },
+                completion: nil
+            )
     }
     
     override func dismissalTransitionWillBegin() {
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
-                self?.overlay.alpha = 0.0
-            }, completion: nil)
+        presentedViewController.transitionCoordinator?
+            .animate(
+                alongsideTransition: { [weak self] _ in self?.overlay.alpha = 0.0 },
+                completion: nil
+            )
     }
 }
-
-extension UIView {
-    
-    static var blurView: UIView {
-        if UIAccessibility.isReduceTransparencyEnabled {
-            let view = UIView()
-            view.backgroundColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha: 0.5)
-            return view
-        } else {
-            return UIVisualEffectView(effect: UIBlurEffect(style: .light))
-        }
-    }
-}
-

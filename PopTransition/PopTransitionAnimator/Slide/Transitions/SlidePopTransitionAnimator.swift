@@ -88,40 +88,25 @@ class SlidePopTransitionAnimator: NSObject, PopAnimatorTransitioning {
         to.view.translatesAutoresizingMaskIntoConstraints = false
         
         transitionContext.containerView.addSubview(popContainer)
-        popContainer.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
-        popContainer.bottomAnchor.constraint(equalTo: transitionContext.containerView.bottomAnchor).isActive = true
-        popContainer.leftAnchor.constraint(equalTo: transitionContext.containerView.leftAnchor).isActive = true
-        popContainer.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
+        popContainer.constraintAllEdges(to: transitionContext.containerView, with: .zero)
 
-        popContainer.addSubview(to.view)
-        
-        let minimumContentHeight = to.preferredContentSize.height == 0 ? 150 : to.preferredContentSize.height
-    
         // MARK: - PresentedController constraints
         
-        let presentedTopConstraint = to.view.topAnchor.constraint(greaterThanOrEqualTo: popContainer.topAnchor, constant: 50)
-        presentedTopConstraint.priority = .defaultHigh
-        presentedTopConstraint.isActive = true
-        
-        let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.bottomAnchor)
-        presentedBottomConstraint.priority = .required
-        presentedBottomConstraint.isActive = true
-        
-        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.leadingAnchor)
-        presentedLeftConstraint.priority = .required
-        presentedLeftConstraint.isActive = true
-        
-        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.trailingAnchor)
-        presentedRightConstraint.priority = .required
-        presentedRightConstraint.isActive = true
-        
+        let minimumContentHeight = to.preferredContentSize.height == 0 ? 150 : to.preferredContentSize.height
         let presentedHeightConstraint: NSLayoutConstraint
         if to.preferredContentSize.height > 0 {
             presentedHeightConstraint = to.view.heightAnchor.constraint(equalToConstant: minimumContentHeight)
         } else {
             presentedHeightConstraint = to.view.heightAnchor.constraint(greaterThanOrEqualToConstant: minimumContentHeight)
         }
-        presentedHeightConstraint.priority = .required
-        presentedHeightConstraint.isActive = true
+        
+        popContainer.addSubview(to.view)
+        to.view.activate([
+            to.view.topAnchor.constraint(greaterThanOrEqualTo: popContainer.topAnchor, constant: 20.0),
+            to.view.bottomAnchor.constraint(equalTo: popContainer.bottomAnchor),
+            to.view.leadingAnchor.constraint(equalTo: popContainer.leadingAnchor),
+            to.view.trailingAnchor.constraint(equalTo: popContainer.trailingAnchor),
+            presentedHeightConstraint
+        ])
     }
 }

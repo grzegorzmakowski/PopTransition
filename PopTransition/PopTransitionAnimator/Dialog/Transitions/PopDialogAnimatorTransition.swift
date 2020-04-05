@@ -55,52 +55,31 @@ class PopDialogAnimatorTransition: NSObject, PopAnimatorTransitioning {
         to.view.translatesAutoresizingMaskIntoConstraints = false
         
         transitionContext.containerView.addSubview(popContainer)
-        popContainer.topAnchor.constraint(equalTo: transitionContext.containerView.topAnchor).isActive = true
-        popContainer.bottomAnchor.constraint(equalTo: transitionContext.containerView.bottomAnchor).isActive = true
-        popContainer.leftAnchor.constraint(equalTo: transitionContext.containerView.leftAnchor).isActive = true
-        popContainer.rightAnchor.constraint(equalTo: transitionContext.containerView.rightAnchor).isActive = true
-
+        popContainer.constraintAllEdges(to: transitionContext.containerView, with: .zero)
         popContainer.addSubview(to.view)
         
-        let minimumContentHeight = to.preferredContentSize.height == 0 ? 150 : to.preferredContentSize.height
-    
         // MARK: - PresentedController constraints
         
-        let presentedTopConstraint = to.view.topAnchor.constraint(equalTo: popContainer.topAnchor, constant: 50)
-        presentedTopConstraint.priority = .defaultHigh
-        presentedTopConstraint.isActive = true
-        
-        let presentedBottomConstraint = to.view.bottomAnchor.constraint(equalTo: popContainer.bottomAnchor, constant: -50)
-        presentedBottomConstraint.priority = .defaultHigh
-        presentedBottomConstraint.isActive = true
-        
-        let presentedLeftConstraint = to.view.leadingAnchor.constraint(equalTo: popContainer.leadingAnchor, constant: 20)
-        presentedLeftConstraint.priority = .defaultHigh
-        presentedLeftConstraint.isActive = true
-        
-        let presentedRightConstraint = to.view.trailingAnchor.constraint(equalTo: popContainer.trailingAnchor, constant: -20)
-        presentedRightConstraint.priority = .defaultHigh
-        presentedRightConstraint.isActive = true
-        
+        let minimumContentHeight = to.preferredContentSize.height == 0 ? 150 : to.preferredContentSize.height
         let presentedHeightConstraint: NSLayoutConstraint
         if to.preferredContentSize.height > 0 {
             presentedHeightConstraint = to.view.heightAnchor.constraint(equalToConstant: minimumContentHeight)
         } else {
             presentedHeightConstraint = to.view.heightAnchor.constraint(greaterThanOrEqualToConstant: minimumContentHeight)
         }
-        presentedHeightConstraint.priority = .required
-        presentedHeightConstraint.isActive = true
         
-        let presentedWidthConstraint = to.view.widthAnchor.constraint(equalToConstant: to.preferredContentSize.width)
-        presentedWidthConstraint.priority = .required
+        popContainer.addSubview(to.view)
+        to.view.activate([
+            to.view.topAnchor.constraint(equalTo: popContainer.topAnchor, constant: 50).with(priority: .defaultHigh),
+            to.view.bottomAnchor.constraint(equalTo: popContainer.bottomAnchor, constant: -50).with(priority: .defaultHigh),
+            to.view.leadingAnchor.constraint(greaterThanOrEqualTo: popContainer.leadingAnchor, constant: 20).with(priority: .required),
+            to.view.trailingAnchor.constraint(lessThanOrEqualTo: popContainer.trailingAnchor, constant: -20).with(priority: .required),
+            to.view.centerYAnchor.constraint(equalTo: popContainer.centerYAnchor).with(priority: .required),
+            to.view.centerXAnchor.constraint(equalTo: popContainer.centerXAnchor).with(priority: .required),
+            presentedHeightConstraint
+        ])
+
+        let presentedWidthConstraint = to.view.widthAnchor.constraint(equalToConstant: to.preferredContentSize.width).with(priority: .defaultHigh)
         presentedWidthConstraint.isActive = to.preferredContentSize.width > 0
-        
-        let presentedCenterYConstraint = to.view.centerYAnchor.constraint(equalTo: popContainer.centerYAnchor)
-        presentedCenterYConstraint.priority = .required
-        presentedCenterYConstraint.isActive = true
-        
-        let presentedCenterXConstraint = to.view.centerXAnchor.constraint(equalTo: popContainer.centerXAnchor)
-        presentedCenterXConstraint.priority = .required
-        presentedCenterXConstraint.isActive = to.preferredContentSize.width > 0
     }
 }
